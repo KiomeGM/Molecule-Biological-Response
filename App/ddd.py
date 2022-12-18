@@ -6,8 +6,6 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import pickle
 from matplotlib.pyplot import figure
-from sklearn.ensemble import RandomForestClassifier
-from st_aggrid import GridOptionsBuilder, AgGrid, GridUpdateMode, DataReturnMode
 
 # Set page config
 st.set_page_config(
