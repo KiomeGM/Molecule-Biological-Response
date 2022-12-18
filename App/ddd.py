@@ -18,16 +18,16 @@ st.set_page_config(
 
 
 # Read HTML file and display it using the com.html component
-with open("Pages/homecopy.html", "r", encoding="utf-8") as html_file:
+with open("App/Pages/homecopy.html", "r", encoding="utf-8") as html_file:
     source_code = html_file.read()
 com.html(source_code, height=1000)
 
 def const_data():
     # Import dataset
-    df_train = pd.read_csv("Data/train.csv")
+    df_train = pd.read_csv("App/Data/train.csv")
     features = list(df_train.drop("Activity", axis=1).columns)
     # Load model from pickle
-    with open("Data/rfmodel.pkl", "rb") as pickle_file:
+    with open("App/Data/rfmodel.pkl", "rb") as pickle_file:
         pickled_model = pickle.load(pickle_file)
 
     return df_train, features, pickled_model
@@ -55,7 +55,7 @@ with st.container():
         st.header("VISUALS CORNER")
         st.write("Class Imbalance Outcome")
         # sns.catplot(x = 'Activity', hue = 'Activity',data = df_train, kind = "count")
-        st.image("images/classImbalance.png", use_column_width="always")
+        st.image("App/images/classImbalance.png", use_column_width="always")
 
         st.write("Histogram and Violin Plot of A feature")
         column = st.text_input(
@@ -84,7 +84,7 @@ with st.container():
                 sns.violinplot(data = list(df_train[column])).set_title("Violin Plot of Independent Feature: "+ column)
                 st.pyplot(fig)
         st.write("Top 10 Most Important Features:")
-        df_features = pd.read_csv("Data/importantFeatures.csv")
+        df_features = pd.read_csv("App/Data/importantFeatures.csv")
         feat = plt.figure()
         plt.barh(df_features.Features[:10], df_features.importance[:10])
         plt.xlabel("Random Forest Feature Importance")
